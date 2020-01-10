@@ -5,6 +5,7 @@
 
 const gulp        = require('gulp');
 const sass        = require('gulp-sass');
+const gcmq = require('gulp-group-css-media-queries');
 const browserSync = require('browser-sync').create();
 const imagemin    = require('gulp-imagemin');
 
@@ -23,7 +24,7 @@ function browserReload(done){
   done();
 };
 
-ファイル変更時に自動更新
+// ファイル変更時に自動更新
 function watchFiles(done) {
   gulp.watch('./sass/**/*.scss', function () {
     return (
@@ -33,7 +34,8 @@ function watchFiles(done) {
           outputStyle: 'expanded'
         }))
         .on('error', sass.logError)
-        .pipe(gulp.dest('./css'))
+        .pipe(gcmq())
+        .pipe(gulp.dest('dist/css'))
     );
   });
   gulp.watch('*.html').on('change', gulp.series(browserReload));
@@ -53,12 +55,5 @@ function imageMin(done) {
       );
   });
 }
-
-
-// exports.default = () => (
-//   gulp.src('./image/*')
-//       .pipe(imagemin())
-//       .pipe(gulp.dest('dist/image'))
-// );
 
 gulp.task('default', gulp.series(sync, watchFiles, imageMin));
