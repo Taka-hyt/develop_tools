@@ -9,6 +9,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const gcmq        = require('gulp-group-css-media-queries');
 const cleanCSS    = require('gulp-clean-css');
 const rename      = require("gulp-rename");
+const sourcemaps  = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 const imagemin    = require('gulp-imagemin');
 
@@ -33,6 +34,7 @@ function watchFiles(done) {
     return (
       gulp
         .src('./sass/**/*.scss')
+        .pipe(sourcemaps.init())
         .pipe(sass({
           outputStyle: 'expanded'
         }))
@@ -40,6 +42,7 @@ function watchFiles(done) {
         .pipe(autoprefixer({
           cascade: false
         }))
+        .pipe(sourcemaps.write())
         .pipe(gcmq())
         .pipe(gulp.dest('dist/css'))
         .pipe(cleanCSS())
