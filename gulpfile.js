@@ -6,7 +6,9 @@
 const gulp        = require('gulp');
 const sass        = require('gulp-sass');
 const browserSync = require('browser-sync').create();
+const imagemin    = require('gulp-imagemin');
 
+// ブラウザの立ち上げ
 function sync(done) {
   browserSync.init({
     server: {
@@ -20,6 +22,8 @@ function browserReload(done){
   browserSync.reload();
   done();
 };
+
+ファイル変更時に自動更新
 function watchFiles(done) {
   gulp.watch('./sass/**/*.scss', function () {
     return (
@@ -37,4 +41,24 @@ function watchFiles(done) {
   gulp.watch('./js/*.js').on('change', gulp.series(browserReload));
   done();
 }
-gulp.task('default', gulp.series(sync, watchFiles));
+
+// imageフォルダの画像を自動圧縮
+function imageMin(done) {
+  gulp.watch('./image/**', function() {
+    return (
+      gulp
+      .src('./image/*')
+      .pipe(imagemin())
+      .pipe(gulp.dest('dist/image'))
+      );
+  });
+}
+
+
+// exports.default = () => (
+//   gulp.src('./image/*')
+//       .pipe(imagemin())
+//       .pipe(gulp.dest('dist/image'))
+// );
+
+gulp.task('default', gulp.series(sync, watchFiles, imageMin));
