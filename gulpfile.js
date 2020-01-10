@@ -12,6 +12,8 @@ const rename      = require("gulp-rename");
 const sourcemaps  = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 const imagemin    = require('gulp-imagemin');
+const plumber     = require('gulp-plumber');
+const notify      = require("gulp-notify");
 
 // ブラウザの立ち上げ
 function sync(done) {
@@ -34,6 +36,7 @@ function watchFiles(done) {
     return (
       gulp
         .src('./sass/**/*.scss')
+        .pipe(plumber(notify.onError('Error: <%= error.message %>')))
         .pipe(sourcemaps.init())
         .pipe(sass({
           outputStyle: 'expanded'
@@ -50,7 +53,7 @@ function watchFiles(done) {
           extname: '.min.css'
         }))
         .pipe(gulp.dest('dist/css'))
-
+        .pipe(browserSync.reload({stream:true}))
     );
   });
   gulp.watch('*.html').on('change', gulp.series(browserReload));
