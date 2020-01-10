@@ -7,6 +7,7 @@ const gulp        = require('gulp');
 const sass        = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const gcmq        = require('gulp-group-css-media-queries');
+const cleanCSS    = require('gulp-clean-css');
 const browserSync = require('browser-sync').create();
 const imagemin    = require('gulp-imagemin');
 
@@ -39,6 +40,7 @@ function watchFiles(done) {
           cascade: false
         }))
         .pipe(gcmq())
+        .pipe(cleanCSS())
         .pipe(gulp.dest('dist/css'))
     );
   });
