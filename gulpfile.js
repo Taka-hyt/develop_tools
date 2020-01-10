@@ -8,6 +8,7 @@ const sass        = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const gcmq        = require('gulp-group-css-media-queries');
 const cleanCSS    = require('gulp-clean-css');
+const rename      = require("gulp-rename");
 const browserSync = require('browser-sync').create();
 const imagemin    = require('gulp-imagemin');
 
@@ -40,8 +41,13 @@ function watchFiles(done) {
           cascade: false
         }))
         .pipe(gcmq())
-        .pipe(cleanCSS())
         .pipe(gulp.dest('dist/css'))
+        .pipe(cleanCSS())
+        .pipe(rename({
+          extname: '.min.css'
+        }))
+        .pipe(gulp.dest('dist/css'))
+
     );
   });
   gulp.watch('*.html').on('change', gulp.series(browserReload));
