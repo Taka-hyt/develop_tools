@@ -5,7 +5,8 @@
 
 const gulp        = require('gulp');
 const sass        = require('gulp-sass');
-const gcmq = require('gulp-group-css-media-queries');
+const autoprefixer = require('gulp-autoprefixer');
+const gcmq        = require('gulp-group-css-media-queries');
 const browserSync = require('browser-sync').create();
 const imagemin    = require('gulp-imagemin');
 
@@ -34,13 +35,16 @@ function watchFiles(done) {
           outputStyle: 'expanded'
         }))
         .on('error', sass.logError)
+        .pipe(autoprefixer({
+          cascade: false
+        }))
         .pipe(gcmq())
         .pipe(gulp.dest('dist/css'))
     );
   });
   gulp.watch('*.html').on('change', gulp.series(browserReload));
-  gulp.watch('./css/*.css').on('change', gulp.series(browserReload));
-  gulp.watch('./js/*.js').on('change', gulp.series(browserReload));
+  gulp.watch('./dist/css/*.css').on('change', gulp.series(browserReload));
+  gulp.watch('./dist/js/*.js').on('change', gulp.series(browserReload));
   done();
 }
 
