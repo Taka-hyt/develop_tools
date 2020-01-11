@@ -9,11 +9,15 @@ const autoprefixer = require('gulp-autoprefixer');
 const gcmq        = require('gulp-group-css-media-queries');
 const cleanCSS    = require('gulp-clean-css');
 const rename      = require("gulp-rename");
+const uglify      = require('gulp-uglify');
 const sourcemaps  = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 const imagemin    = require('gulp-imagemin');
+const mozjpeg     = require('imagemin-mozjpeg');
+const pngquant    = require('imagemin-pngquant');
 const plumber     = require('gulp-plumber');
 const notify      = require("gulp-notify");
+const changed     = require('gulp-changed');
 
 // ブラウザの立ち上げ
 function sync(done) {
@@ -32,10 +36,10 @@ function browserReload(done){
 
 // ファイル変更時に自動更新
 function watchFiles(done) {
-  gulp.watch('./sass/**/*.scss', function () {
+  gulp.watch('./src/sass/**/*.scss', function () {
     return (
       gulp
-        .src('./sass/**/*.scss')
+        .src('./src/sass/**/*.scss')
         .pipe(plumber(notify.onError('Error: <%= error.message %>')))
         .pipe(sourcemaps.init())
         .pipe(sass({
@@ -47,12 +51,12 @@ function watchFiles(done) {
         }))
         .pipe(sourcemaps.write())
         .pipe(gcmq())
-        .pipe(gulp.dest('dist/css'))
+        .pipe(gulp.dest('./dist/css'))
         .pipe(cleanCSS())
         .pipe(rename({
           extname: '.min.css'
         }))
-        .pipe(gulp.dest('dist/css'))
+        .pipe(gulp.dest('./dist/css'))
         .pipe(browserSync.reload({stream:true}))
     );
   });
@@ -62,16 +66,47 @@ function watchFiles(done) {
   done();
 }
 
-// imageフォルダの画像を自動圧縮
-function imageMin(done) {
-  gulp.watch('./image/**', function() {
+// JSファイルを縮
+function jsMin(done) {
+  gulp.watch('./src/js/*.js', function() {
     return (
       gulp
-      .src('./image/*')
-      .pipe(imagemin())
+      .src('./src/js/*.js')
+      .pipe(gulp.dest('./dist/js'))
+      .pipe(uglify())
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(gulp.dest('./dist/js'))
+      );
+  });
+  done();
+}
+
+// imageフォルダの画像を自動圧縮
+function imageMin(done) {
+  gulp.watch('./src/image/*.{jpg,jpeg,png,gif,svg}', function() {
+    return (
+      gulp
+      .src('./src/image/*.{jpg,jpeg,png,gif,svg}')
+      .pipe(changed("dist/image"))
+      .pipe(
+        imagemin([
+          pngquant({
+            quality: [.7, .85],
+            speed: 1,
+          }),
+          mozjpeg({
+            quality: 85,
+            progressive: true
+          }),
+          imagemin.svgo(),
+          imagemin.optipng(),
+          imagemin.gifsicle(),
+        ])
+      )
       .pipe(gulp.dest('dist/image'))
       );
   });
+  done();
 }
 
-gulp.task('default', gulp.series(sync, watchFiles, imageMin));
+gulp.task('default', gulp.series(sync, watchFiles, jsMin, imageMin));
