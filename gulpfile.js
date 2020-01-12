@@ -66,7 +66,7 @@ function watchFiles(done) {
   done();
 }
 
-// JSファイルを縮
+// JSファイルを圧縮
 function jsMin(done) {
   gulp.watch('./src/js/*.js', function() {
     return (

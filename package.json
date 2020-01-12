@@ -1,12 +1,17 @@
 {
-  "name": "webpack",
+  "name": "webpack-practice",
   "version": "1.0.0",
   "main": "gulpfile.js",
   "dependencies": {
     "jquery": "^3.4.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@babel/preset-env": "^7.8.0",
+    "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-changed": "^4.0.2",
@@ -22,10 +27,14 @@
     "gulp-uglify": "^3.0.2",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-stream": "^5.2.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",
