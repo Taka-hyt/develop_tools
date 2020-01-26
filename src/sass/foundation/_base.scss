@@ -1,0 +1,125 @@
+/* ==========================================================================
+    Base
+    ========================================================================== */   
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP:300,400,500,600,700&display=swap');
+
+$color-default: #333;
+$color-light: #fff;
+$color-primary: #333;
+$color-secondary: #f7f7f7f;
+
+/* フォントサイズ
+  @include font-size(14)
+  こんな感じで記述する。
+  vwなのでスマホのとき、でかすぎる時があるので、
+  大きい文字(fs32とか)は、SPのみ、
+  font-size: 6vw; こんな感じで上書きすることを許す。
+================================================== */
+@mixin font-size($font-size) {
+    font-size: $font-size + px;
+    // font-size: $font-size + rem;
+  
+    @media screen and (max-width: 576px) {
+      font-size: (3.5vw * $font-size)/ 14;
+    }
+  
+    @media screen and (max-width: 992px) {
+      font-size: (1.4vw * $font-size)/ 14;
+    }
+  
+    @media screen and (min-width: 993px) {
+      font-size: $font-size + px;
+    }
+  
+    @media print {
+      font-size: $font-size + px;
+    }
+}  
+
+@mixin pc($width: 993px) {
+    @media screen and (min-width: $width) {
+        @content;
+    }
+}
+@mixin tablet($width: 992px) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}
+@mixin sp($width: 576px) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}
+
+// PCの時のみ表示する   
+.u-pc {
+    display: block;
+    @include tablet() {
+        display: none !important;
+    }
+}
+// tablet・spの時のみ表示する
+.u-tablet {
+    display: none;
+    @include tablet() {
+        display: none;
+    }
+}
+
+// spの時のみ表示する
+.u-sp {
+    display: none;
+    @include sp() {
+        display: block !important;
+    }
+}
+
+// レスポンシブにしても勝手にpaddingを付けてくれる
+.u-container {
+    box-sizing: content-box !important;
+    padding: 0 5%;
+}
+
+html {
+    overflow: auto;
+}
+
+body {
+    font-family: "Noto Serif JP", sans-serif;
+    color: $color-default;
+    overflow-x: hidden;
+}
+
+/* IE表示用のCSS　*/
+_:-ms-input-placeholder body, :root body {
+    // font-family: Meiryo, sans-serif;
+}
+
+img {
+    width: 100%;
+}
+
+h1 {
+    @include font-size(48)
+}
+
+h2 {
+    @include font-size(32)
+}
+
+h3 {
+    @include font-size(24)
+}
+
+p {
+    @include font-size(16)
+
+}
+
+a {
+    color: $color-default;
+    text-decoration: none;
+    @include font-size(16)
+}
