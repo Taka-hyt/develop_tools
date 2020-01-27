@@ -23,7 +23,7 @@ const changed = require("gulp-changed");
 function sync(done) {
     browserSync.init({
         server: {
-            baseDir: "./dist/html/",
+            baseDir: "./dist/",
             index: "index.html"
         },
         reloadOnRestart: true
@@ -37,8 +37,8 @@ function browserReload(done) {
 
 // HTMLファイルをdistディレクトリに吐き出す
 function watchHtml(done) {
-    gulp.watch("./src/html/*.html", function() {
-        return gulp.src("./src/html/*.html").pipe(gulp.dest("./dist/html"));
+    gulp.watch("./src/**/*.html", function() {
+        return gulp.src("./src/**/*.html").pipe(gulp.dest("./dist/"));
     });
     done();
 }
@@ -73,7 +73,7 @@ function watchFiles(done) {
             .pipe(gulp.dest("./dist/css"))
             .pipe(browserSync.reload({ stream: true }));
     });
-    gulp.watch("./dist/html/*.html").on("change", gulp.series(browserReload));
+    gulp.watch("./dist/*.html").on("change", gulp.series(browserReload));
     gulp.watch("./dist/css/*.css").on("change", gulp.series(browserReload));
     gulp.watch("./dist/js/*.js").on("change", gulp.series(browserReload));
     done();

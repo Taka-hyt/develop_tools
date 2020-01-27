@@ -7,7 +7,7 @@
 $color-default: #333;
 $color-light: #fff;
 $color-primary: #333;
-$color-secondary: #f7f7f7f;
+$color-secondary: #f7f7f7;
 
 /* フォントサイズ
   @include font-size(14)
@@ -24,11 +24,11 @@ $color-secondary: #f7f7f7f;
       font-size: (3.5vw * $font-size)/ 14;
     }
   
-    @media screen and (max-width: 992px) {
-      font-size: (1.4vw * $font-size)/ 14;
+    @media screen and (max-width: 1000px) {
+      font-size: (1.75vw * $font-size)/ 14;
     }
   
-    @media screen and (min-width: 993px) {
+    @media screen and (min-width: 1001px) {
       font-size: $font-size + px;
     }
   
@@ -37,17 +37,21 @@ $color-secondary: #f7f7f7f;
     }
 }  
 
-@mixin pc($width: 993px) {
+/* ==================================
+// メディアクエリ
+===================================== */
+
+@mixin pc-layout($width: 1001px) {
     @media screen and (min-width: $width) {
         @content;
     }
 }
-@mixin tablet($width: 992px) {
+@mixin tab-layout($width: 1000px) {
     @media screen and (max-width: $width) {
         @content;
     }
 }
-@mixin sp($width: 576px) {
+@mixin sp-layout($width: 576px) {
     @media screen and (max-width: $width) {
         @content;
     }
@@ -56,22 +60,22 @@ $color-secondary: #f7f7f7f;
 // PCの時のみ表示する   
 .u-pc {
     display: block;
-    @include tablet() {
+    @include tab-layout() {
         display: none !important;
     }
 }
 // tablet・spの時のみ表示する
-.u-tablet {
+.u-tab {
     display: none;
-    @include tablet() {
-        display: none;
+    @include tab-layout() {
+        display: block;
     }
 }
 
 // spの時のみ表示する
 .u-sp {
     display: none;
-    @include sp() {
+    @include sp-layout() {
         display: block !important;
     }
 }
