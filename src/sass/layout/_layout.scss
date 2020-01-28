@@ -1,7 +1,7 @@
 /* ==================================
 レイアウト
 ===================================== */
-.l-contwrap {
+.l-content-wrap {
     // max-width: calc(1366px - 4.8%);
     max-width: 1366px;
     margin-right: auto;
@@ -33,7 +33,7 @@
 }
 
     /* レイアウト */
-.l-contwrap-1024 {
+.l-content-wrap-default {
     position: relative;
 
     max-width: 1024px;
