@@ -1,4 +1,5 @@
-## フロントエンド開発ツール  
-### 「gulp」コマンドでhtml,css,JavaScriptのwatch,browsersync発動  
-### 「npm run dev」コマンドでbundle.jsの作成  
-### 開発データはsrcディレクトリ、納品データはdistディレクトリ
+## フロントエンド開発ツール
+
+### 「npm run start」開発用コマンド
+
+### 「npm run build」納品用コマンド
