@@ -33,7 +33,7 @@
         "webpack-stream": "^5.2.1"
     },
     "scripts": {
-        "start": "npx gulp & webpack --mode development --watch",
+        "start": "npx gulp",
         "dev": "webpack --mode development --watch",
         "build": "webpack --mode production"
     },

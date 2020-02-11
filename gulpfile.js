@@ -18,6 +18,9 @@ const pngquant = require('imagemin-pngquant');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const changed = require('gulp-changed');
+const webpackStream = require('webpack-stream');
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config');
 
 // ブラウザの立ち上げ
 function sync(done) {
@@ -46,31 +49,33 @@ function watchHtml(done) {
 // ファイル変更時に自動更新
 function watchFiles(done) {
     gulp.watch('./src/sass/**/*.scss', function() {
-        return gulp
-            .src('./src/sass/**/*.scss')
-            .pipe(plumber(notify.onError('Error: <%= error.message %>')))
-            .pipe(sourcemaps.init())
-            .pipe(
-                sass({
-                    outputStyle: 'expanded',
-                })
-            )
-            .on('error', sass.logError)
-            .pipe(
-                autoprefixer({
-                    cascade: false,
-                })
-            )
-            .pipe(sourcemaps.write())
-            .pipe(gcmq())
-            .pipe(gulp.dest('./dist/css'))
-            .pipe(cleanCSS())
-            .pipe(
-                rename({
-                    extname: '.min.css',
-                })
-            )
-            .pipe(gulp.dest('./dist/css'));
+        return (
+            gulp
+                .src('./src/sass/**/*.scss')
+                .pipe(plumber(notify.onError('Error: <%= error.message %>')))
+                .pipe(sourcemaps.init())
+                .pipe(
+                    sass({
+                        outputStyle: 'expanded',
+                    })
+                )
+                .on('error', sass.logError)
+                .pipe(
+                    autoprefixer({
+                        cascade: false,
+                    })
+                )
+                .pipe(sourcemaps.write())
+                .pipe(gcmq())
+                // .pipe(gulp.dest('./dist/css'))
+                .pipe(cleanCSS())
+                .pipe(
+                    rename({
+                        extname: '.min.css',
+                    })
+                )
+                .pipe(gulp.dest('./dist/css'))
+        );
         // .pipe(browserSync.reload({ stream: true }));
     });
     gulp.watch('./dist/*.html').on('change', gulp.series(browserReload));
@@ -78,19 +83,6 @@ function watchFiles(done) {
     gulp.watch('./dist/js/*.js').on('change', gulp.series(browserReload));
     done();
 }
-
-// JSファイルを圧縮
-// function jsMin(done) {
-//     gulp.watch('./src/js/*.js', function() {
-//         return gulp
-//             .src('./src/js/*.js')
-//             .pipe(gulp.dest('./dist/js'))
-//             .pipe(uglify())
-//             .pipe(rename({ suffix: '.min' }))
-//             .pipe(gulp.dest('./dist/js'));
-//     });
-//     done();
-// }
 
 // imageフォルダの画像を自動圧縮
 function imageMin(done) {
@@ -118,5 +110,26 @@ function imageMin(done) {
     done();
 }
 
+// JSファイルを圧縮
+// function jsMin(done) {
+//     gulp.watch('./src/js/*.js', function() {
+//         return gulp
+//             .src('./src/js/*.js')
+//             .pipe(gulp.dest('./dist/js'))
+//             .pipe(uglify())
+//             .pipe(rename({ suffix: '.min' }))
+//             .pipe(gulp.dest('./dist/js'));
+//     });
+//     done();
+// }
+
+// webpackでjsをbundle
+function jsMin(done) {
+    gulp.watch('./src/js/**/*.js', function() {
+        return webpackStream(webpackConfig, webpack).pipe(gulp.dest('dist/js'));
+    });
+    done();
+}
+
 // gulp.task('default', gulp.series(sync, watchHtml, watchFiles, jsMin, imageMin));
-gulp.task('default', gulp.series(sync, watchHtml, watchFiles, imageMin));
+gulp.task('default', gulp.series(sync, watchHtml, watchFiles, imageMin, jsMin));
