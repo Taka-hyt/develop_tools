@@ -1,5 +1,5 @@
 {
-    "name": "webpack-practice",
+    "name": "",
     "version": "1.0.0",
     "main": "gulpfile.js",
     "dependencies": {
@@ -34,8 +34,7 @@
     },
     "scripts": {
         "start": "npx gulp",
-        "dev": "webpack --mode development --watch",
-        "build": "webpack --mode production"
+        "build": "webpack --mode production && gulp"
     },
     "author": "",
     "license": "ISC",
