@@ -8,6 +8,7 @@ const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const gcmq = require('gulp-group-css-media-queries');
 const htmlmin = require('gulp-htmlmin');
+const pug = require('gulp-pug');
 const cleanCSS = require('gulp-clean-css');
 const rename = require('gulp-rename');
 // const uglify = require('gulp-uglify');
@@ -46,19 +47,30 @@ function browserReload(done) {
 
 // HTMLファイルをdistディレクトリに吐き出す
 function htmlMin(done) {
-    // gulp.watch('./src/**/*.html', function() {
-    console.log('変更したよん');
     return gulp
         .src('./src/**/*.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('./dist/'));
-    // });
+    done();
+}
+
+function pugMin(done) {
+    console.log('pugpug');
+    return gulp
+        .src('./src/pug/**/*.pug')
+        .pipe(plumber())
+        .pipe(
+            pug({
+                pretty: true,
+            })
+        )
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(gulp.dest('./dist/pug/'));
     done();
 }
 
 // ファイル変更時に自動更新
 function sassMin(done) {
-    // gulp.watch('./src/sass/**/*.scss', function() {
     return (
         gulp
             .src('./src/sass/**/*.{scss,sass}')
@@ -86,18 +98,11 @@ function sassMin(done) {
             )
             .pipe(gulp.dest('./dist/css'))
     );
-    // .pipe(browserSync.reload({ stream: true }));
-    // });
     done();
-    // gulp.watch('./src/**/*.html').on('change', gulp.series(browserReload));
-    // gulp.watch('./src/sass/*.scss/**').on('change', gulp.series(browserReload));
-    // gulp.watch('./src/js/*.js/**').on('change', gulp.series(browserReload));
-    // done();
 }
 
 // imageフォルダの画像を自動圧縮
 function imageMin(done) {
-    // gulp.watch('./src/image/*.{jpg,jpeg,png,gif,svg}', function() {
     return gulp
         .src('./src/image/*.{jpg,jpeg,png,gif,svg}')
         .pipe(changed('dist/image'))
@@ -117,7 +122,6 @@ function imageMin(done) {
             ])
         )
         .pipe(gulp.dest('dist/image'));
-    // });
     done();
 }
 
@@ -141,6 +145,7 @@ function jsBundle(done) {
 
 function watchFile(done) {
     gulp.watch('./src/**/*.html', htmlMin).on('change', gulp.series(browserReload));
+    gulp.watch('./src/**/*.pug', pugMin).on('change', gulp.series(browserReload));
     gulp.watch('./src/sass/**/*.{scss,sass}', sassMin).on('change', gulp.series(browserReload));
     gulp.watch('./src/js/**/*.js', jsBundle).on('change', gulp.series(browserReload));
     gulp.watch('./src/image/*.{jpg,jpeg,png,gif,svg}', imageMin).on('change', gulp.series(browserReload));
@@ -148,4 +153,4 @@ function watchFile(done) {
     done();
 }
 
-gulp.task('default', gulp.series(sync, htmlMin, sassMin, imageMin, jsBundle, watchFile));
+gulp.task('default', gulp.series(sync, htmlMin, pugMin, sassMin, imageMin, jsBundle, watchFile));
