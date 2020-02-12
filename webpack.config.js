@@ -1,8 +1,10 @@
+const isDevelop = process.env.NODE_ENV === 'development';
 const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    mode: 'development',
+    // mode: 'development',
+    mode: process.env.NODE_ENV,
     entry: './src/js/main.js',
     output: {
         filename: 'bundle.js',
