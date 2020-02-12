@@ -47,12 +47,13 @@ function browserReload(done) {
 // HTMLファイルをdistディレクトリに吐き出す
 function htmlMin(done) {
     // gulp.watch('./src/**/*.html', function() {
+    console.log('変更したよん');
     return gulp
         .src('./src/**/*.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('./dist/'));
     // });
-    // done();
+    done();
 }
 
 // ファイル変更時に自動更新
@@ -60,7 +61,7 @@ function sassMin(done) {
     // gulp.watch('./src/sass/**/*.scss', function() {
     return (
         gulp
-            .src('./src/sass/**/*.scss')
+            .src('./src/sass/**/*.{scss,sass}')
             .pipe(plumber(notify.onError('Error: <%= error.message %>')))
             .pipe(sourcemaps.init())
             .pipe(
@@ -87,7 +88,7 @@ function sassMin(done) {
     );
     // .pipe(browserSync.reload({ stream: true }));
     // });
-    // done();
+    done();
     // gulp.watch('./src/**/*.html').on('change', gulp.series(browserReload));
     // gulp.watch('./src/sass/*.scss/**').on('change', gulp.series(browserReload));
     // gulp.watch('./src/js/*.js/**').on('change', gulp.series(browserReload));
@@ -117,7 +118,7 @@ function imageMin(done) {
         )
         .pipe(gulp.dest('dist/image'));
     // });
-    // done();
+    done();
 }
 
 // JSファイルを圧縮
@@ -135,17 +136,14 @@ function imageMin(done) {
 
 // webpackでjsをbundle
 function jsBundle(done) {
-    // gulp.watch('./src/js/**/*.js', function() {
     return webpackStream(webpackConfig, webpack).pipe(gulp.dest('dist/js'));
-    // });
-    // done();
 }
 
 function watchFile(done) {
-    gulp.watch('./src/**/*.html');
-    gulp.watch('./src/sass/**/*.sass');
-    gulp.watch('./src/js/**/*.js');
-    gulp.watch('./src/image/*.{jpg,jpeg,png,gif,svg}');
+    gulp.watch('./src/**/*.html', htmlMin).on('change', gulp.series(browserReload));
+    gulp.watch('./src/sass/**/*.{scss,sass}', sassMin).on('change', gulp.series(browserReload));
+    gulp.watch('./src/js/**/*.js', jsBundle).on('change', gulp.series(browserReload));
+    gulp.watch('./src/image/*.{jpg,jpeg,png,gif,svg}', imageMin).on('change', gulp.series(browserReload));
     gulp.series(browserReload);
     done();
 }
