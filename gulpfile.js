@@ -7,9 +7,10 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const gcmq = require('gulp-group-css-media-queries');
+const htmlmin = require('gulp-htmlmin');
 const cleanCSS = require('gulp-clean-css');
 const rename = require('gulp-rename');
-const uglify = require('gulp-uglify');
+// const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 const imagemin = require('gulp-imagemin');
@@ -33,81 +34,90 @@ function sync(done) {
     });
     done();
 }
+
 function browserReload(done) {
     browserSync.reload();
     done();
 }
 
+// function clean(done) {
+//     return gulp.src('./dist/**', { read: false }).pipe(rimraf());
+// }
+
 // HTMLファイルをdistディレクトリに吐き出す
-function watchHtml(done) {
-    gulp.watch('./src/**/*.html', function() {
-        return gulp.src('./src/**/*.html').pipe(gulp.dest('./dist/'));
-    });
-    done();
+function htmlMin(done) {
+    // gulp.watch('./src/**/*.html', function() {
+    return gulp
+        .src('./src/**/*.html')
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(gulp.dest('./dist/'));
+    // });
+    // done();
 }
 
 // ファイル変更時に自動更新
-function watchFiles(done) {
-    gulp.watch('./src/sass/**/*.scss', function() {
-        return (
-            gulp
-                .src('./src/sass/**/*.scss')
-                .pipe(plumber(notify.onError('Error: <%= error.message %>')))
-                .pipe(sourcemaps.init())
-                .pipe(
-                    sass({
-                        outputStyle: 'expanded',
-                    })
-                )
-                .on('error', sass.logError)
-                .pipe(
-                    autoprefixer({
-                        cascade: false,
-                    })
-                )
-                .pipe(sourcemaps.write())
-                .pipe(gcmq())
-                // .pipe(gulp.dest('./dist/css'))
-                .pipe(cleanCSS())
-                .pipe(
-                    rename({
-                        extname: '.min.css',
-                    })
-                )
-                .pipe(gulp.dest('./dist/css'))
-        );
-        // .pipe(browserSync.reload({ stream: true }));
-    });
-    gulp.watch('./dist/*.html').on('change', gulp.series(browserReload));
-    gulp.watch('./dist/css/*.css').on('change', gulp.series(browserReload));
-    gulp.watch('./dist/js/*.js').on('change', gulp.series(browserReload));
-    done();
+function sassMin(done) {
+    // gulp.watch('./src/sass/**/*.scss', function() {
+    return (
+        gulp
+            .src('./src/sass/**/*.scss')
+            .pipe(plumber(notify.onError('Error: <%= error.message %>')))
+            .pipe(sourcemaps.init())
+            .pipe(
+                sass({
+                    outputStyle: 'expanded',
+                })
+            )
+            .on('error', sass.logError)
+            .pipe(
+                autoprefixer({
+                    cascade: false,
+                })
+            )
+            .pipe(sourcemaps.write())
+            .pipe(gcmq())
+            // .pipe(gulp.dest('./dist/css'))
+            .pipe(cleanCSS())
+            .pipe(
+                rename({
+                    extname: '.min.css',
+                })
+            )
+            .pipe(gulp.dest('./dist/css'))
+    );
+    // .pipe(browserSync.reload({ stream: true }));
+    // });
+    // done();
+    // gulp.watch('./src/**/*.html').on('change', gulp.series(browserReload));
+    // gulp.watch('./src/sass/*.scss/**').on('change', gulp.series(browserReload));
+    // gulp.watch('./src/js/*.js/**').on('change', gulp.series(browserReload));
+    // done();
 }
 
 // imageフォルダの画像を自動圧縮
 function imageMin(done) {
-    gulp.watch('./src/image/*.{jpg,jpeg,png,gif,svg}', function() {
-        return gulp
-            .src('./src/image/*.{jpg,jpeg,png,gif,svg}')
-            .pipe(changed('dist/image'))
-            .pipe(
-                imagemin([
-                    pngquant({
-                        quality: [0.7, 0.85],
-                        speed: 1,
-                    }),
-                    mozjpeg({
-                        quality: 85,
-                        progressive: true,
-                    }),
-                    imagemin.svgo(),
-                    imagemin.optipng(),
-                    imagemin.gifsicle(),
-                ])
-            )
-            .pipe(gulp.dest('dist/image'));
-    });
-    done();
+    // gulp.watch('./src/image/*.{jpg,jpeg,png,gif,svg}', function() {
+    return gulp
+        .src('./src/image/*.{jpg,jpeg,png,gif,svg}')
+        .pipe(changed('dist/image'))
+        .pipe(
+            imagemin([
+                pngquant({
+                    quality: [0.7, 0.85],
+                    speed: 1,
+                }),
+                mozjpeg({
+                    quality: 85,
+                    progressive: true,
+                }),
+                imagemin.svgo(),
+                imagemin.optipng(),
+                imagemin.gifsicle(),
+            ])
+        )
+        .pipe(gulp.dest('dist/image'));
+    // });
+    // done();
 }
 
 // JSファイルを圧縮
@@ -124,12 +134,20 @@ function imageMin(done) {
 // }
 
 // webpackでjsをbundle
-function jsMin(done) {
-    gulp.watch('./src/js/**/*.js', function() {
-        return webpackStream(webpackConfig, webpack).pipe(gulp.dest('dist/js'));
-    });
+function jsBundle(done) {
+    // gulp.watch('./src/js/**/*.js', function() {
+    return webpackStream(webpackConfig, webpack).pipe(gulp.dest('dist/js'));
+    // });
+    // done();
+}
+
+function watchFile(done) {
+    gulp.watch('./src/**/*.html');
+    gulp.watch('./src/sass/**/*.sass');
+    gulp.watch('./src/js/**/*.js');
+    gulp.watch('./src/image/*.{jpg,jpeg,png,gif,svg}');
+    gulp.series(browserReload);
     done();
 }
 
-// gulp.task('default', gulp.series(sync, watchHtml, watchFiles, jsMin, imageMin));
-gulp.task('default', gulp.series(sync, watchHtml, watchFiles, imageMin, jsMin));
+gulp.task('default', gulp.series(sync, htmlMin, sassMin, imageMin, jsBundle, watchFile));

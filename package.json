@@ -18,10 +18,12 @@
         "gulp-clean-css": "^4.2.0",
         "gulp-cli": "^2.2.0",
         "gulp-group-css-media-queries": "^1.2.2",
+        "gulp-htmlmin": "^5.0.1",
         "gulp-imagemin": "^6.2.0",
         "gulp-notify": "^3.2.0",
         "gulp-plumber": "^1.2.1",
         "gulp-rename": "^1.4.0",
+        "gulp-rimraf": "^1.0.0",
         "gulp-sass": "^4.0.2",
         "gulp-sourcemaps": "^2.6.5",
         "gulp-uglify": "^3.0.2",
@@ -34,7 +36,7 @@
     },
     "scripts": {
         "start": "npx gulp",
-        "build": "webpack --mode production && gulp"
+        "build": "npx gulp && webpack --mode production"
     },
     "author": "",
     "license": "ISC",
