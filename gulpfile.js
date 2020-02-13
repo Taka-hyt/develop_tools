@@ -55,7 +55,6 @@ function htmlMin(done) {
 }
 
 function pugMin(done) {
-    console.log('pugpug');
     return gulp
         .src('./src/pug/**/*.pug')
         .pipe(plumber())
