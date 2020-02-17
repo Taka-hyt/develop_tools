@@ -5,10 +5,10 @@ const env = process.env.NODE_ENV || 'development';
 module.exports = {
     // mode: 'development',
     mode: env,
-    entry: './src/js/main.js',
+    entry: './src/js/app.js',
     output: {
         filename: 'bundle.js',
-        // 出力先のパス（絶対パスを指定する必要がある）
+        // 出力先のパス（絶対パスを指定する）
         path: path.join(__dirname, './dist/js'),
     },
     module: {
