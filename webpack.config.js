@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV || 'development';
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     // mode: 'development',
@@ -35,6 +36,16 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'eslint-loader',
             },
+        ],
+    },
+    plugins: [],
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    compress: { drop_console: true },
+                },
+            }),
         ],
     },
 };

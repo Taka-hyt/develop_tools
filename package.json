@@ -32,6 +32,7 @@
         "imagemin-mozjpeg": "^8.0.0",
         "imagemin-pngquant": "^8.0.0",
         "nodemon": "^1.19.4",
+        "terser": "^4.6.3",
         "webpack": "^4.41.5",
         "webpack-cli": "^3.3.10",
         "webpack-stream": "^5.2.1"
