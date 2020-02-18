@@ -41,20 +41,18 @@ function browserReload(done) {
 // 立ち上げた際にdistを一旦クリーンにする
 function clean(cb) {
     return rimraf('./dist', cb);
-    done();
 }
 
 // HTMLをMinifyしてdistディレクトリに吐き出す
-function htmlMin(done) {
+function htmlMin() {
     return gulp
         .src('./src/**/*.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('./dist/'));
-    done();
 }
 
 // PugをHTMLに変換・Minifyしてdistに吐き出し
-function pugMin(done) {
+function pugMin() {
     return gulp
         .src('./src/pug/**/*.pug')
         .pipe(plumber())
@@ -65,11 +63,10 @@ function pugMin(done) {
         )
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('./dist/pug/'));
-    done();
 }
 
 // SassをCSSに変換・Minifyしてdistに吐き出し
-function sassMin(done) {
+function sassMin() {
     return (
         gulp
             .src('./src/sass/**/*.{scss,sass}')
@@ -97,11 +94,10 @@ function sassMin(done) {
             )
             .pipe(gulp.dest('./dist/css'))
     );
-    done();
 }
 
 // imageをMinifyしてdistに吐き出し
-function imageMin(done) {
+function imageMin() {
     return gulp
         .src('./src/image/*.{jpg,jpeg,png,gif,svg}')
         .pipe(changed('dist/image'))
@@ -121,19 +117,16 @@ function imageMin(done) {
             ])
         )
         .pipe(gulp.dest('dist/image'));
-    done();
 }
 
 // videoをそのまま吐き出す
-function movie(done) {
+function movie() {
     return gulp.src('./src/movie/*.*').pipe(gulp.dest('dist/movie'));
-    done();
 }
 
 // PDFをそのまま吐き出す
-function pdf(done) {
+function pdf() {
     return gulp.src('./src/pdf/*.*').pipe(gulp.dest('dist/pdf'));
-    done();
 }
 
 // JSファイルを圧縮
@@ -146,7 +139,7 @@ function pdf(done) {
 //             .pipe(rename({ suffix: '.min' }))
 //             .pipe(gulp.dest('./dist/js'));
 //     });
-//     done();
+// done();
 // }
 
 // webpackでjsをbundleしてdistに吐き出し
@@ -168,4 +161,4 @@ function watchFile(done) {
 }
 
 // タスクの実行！
-gulp.task('default', gulp.series(sync, clean, htmlMin, pugMin, sassMin, imageMin, movie, pdf, jsBundle, watchFile));
+exports.default = gulp.series(clean, gulp.parallel(htmlMin, pugMin, sassMin, imageMin, movie, pdf, jsBundle), sync, watchFile);
