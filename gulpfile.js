@@ -5,7 +5,7 @@ const gcmq = require('gulp-group-css-media-queries');
 const htmlmin = require('gulp-htmlmin');
 const pug = require('gulp-pug');
 const cleanCSS = require('gulp-clean-css');
-const rimraf = require('gulp-rimraf');
+const rimraf = require('rimraf');
 const rename = require('gulp-rename');
 // const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
@@ -39,9 +39,8 @@ function browserReload(done) {
 }
 
 // 立ち上げた際にdistを一旦クリーンにする
-function clean(done) {
-    // return gulp.src('./dist/', { read: false }).pipe(rimraf());
-    return gulp.src('./dist/', { allowEmpty: true }).pipe(rimraf());
+function clean(cb) {
+    return rimraf('./dist', cb);
     done();
 }
 
