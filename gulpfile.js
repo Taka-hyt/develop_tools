@@ -27,6 +27,7 @@ function sync(done) {
             baseDir: './dist/',
             index: 'index.html',
         },
+        open: 'external',
         reloadOnRestart: true,
     });
     done();

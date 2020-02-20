@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV || 'development';
 const TerserPlugin = require('terser-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
     // mode: 'development',
@@ -22,10 +23,18 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: [['@babel/preset-env', { modules: false }]],
+                            presets: ['@babel/preset-env'],
                         },
                     },
                 ],
+            },
+            {
+                test: /\.css$/,
+                use: ['vue-style-loader', 'css-loader'],
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
             },
             {
                 // enforce: 'pre'を指定することによって
@@ -38,7 +47,14 @@ module.exports = {
             },
         ],
     },
-    plugins: [],
+    resolve: {
+        // Webpackで利用するときの設定
+        alias: {
+            vue$: 'vue/dist/vue.esm.js',
+        },
+        extensions: ['*', '.js', '.vue', '.json'],
+    },
+    plugins: [new VueLoaderPlugin()],
     optimization: {
         minimizer: [
             new TerserPlugin({

@@ -1,12 +1,6 @@
-// import $ from './modules/jquery.min';
 import $ from 'jquery';
+import '@babel/polyfill';
 
 $(function() {
     console.log('コンソールログだよん');
-});
-
-$(function() {
-    $('.button').on('click', function() {
-        $('p').css('color', 'blue');
-    });
 });
