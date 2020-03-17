@@ -1,0 +1,22 @@
+include ./_mixin
+
+header#header.l-header
+    .l-header_wrapper
+        a(href="/").l-header_logo
+            +img('logo', '.svg', 'logo')
+        button(type="button" aria-controls="global-nav" aria-expanded="false")#js-buttonHamburger.c-button.p-hamburger.js-titleLoadAnimDelay2
+            span.p-hamburger_line
+                span.u-visuallyHidden
+                    | メニューを開閉する
+        .js-nav-cover.is-hidden
+        #global_nav.l-global_nav.is-hidden
+            .l-container
+                ul.l-global_nav_box
+                    li.l-global_nav_item
+                        a(href="/").l-global_nav_link Top
+                    li.l-global_nav_item
+                        a(href="/about/").l-global_nav_link About
+                    li.l-global_nav_item
+                        a(href="/concept/").l-global_nav_link Concept
+                    li.l-global_nav_item
+                        a(href="/contact/").l-global_nav_link Contact

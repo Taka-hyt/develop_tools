@@ -54,16 +54,18 @@ function htmlMin() {
 
 // PugをHTMLに変換・Minifyしてdistに吐き出し
 function pugMin() {
-    return gulp
-        .src('./src/pug/**/*.pug')
-        .pipe(plumber())
-        .pipe(
-            pug({
-                pretty: true,
-            })
-        )
-        .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(gulp.dest('./dist/pug/'));
+    return (
+        gulp
+            .src('./src/**/*.pug')
+            .pipe(plumber())
+            .pipe(
+                pug({
+                    pretty: true,
+                })
+            )
+            // .pipe(htmlmin({ collapseWhitespace: true }))
+            .pipe(gulp.dest('./dist/'))
+    );
 }
 
 // SassをCSSに変換・Minifyしてdistに吐き出し
@@ -125,6 +127,11 @@ function movie() {
     return gulp.src('./src/movie/*.*').pipe(gulp.dest('dist/movie'));
 }
 
+// faviconをそのまま吐き出す
+function favicon() {
+    return gulp.src('./src/image/*.ico').pipe(gulp.dest('dist/image'));
+}
+
 // PDFをそのまま吐き出す
 function pdf() {
     return gulp.src('./src/pdf/*.*').pipe(gulp.dest('dist/pdf'));
@@ -156,10 +163,12 @@ function watchFile(done) {
     gulp.watch('./src/js/**/*.js', jsBundle).on('change', gulp.series(browserReload));
     gulp.watch('./src/image/*.{jpg,jpeg,png,gif,svg}', imageMin).on('change', gulp.series(browserReload));
     gulp.watch('./src/movie/*.*', movie).on('change', gulp.series(browserReload));
+    gulp.watch('./src/favicon/*.*', favicon).on('change', gulp.series(browserReload));
     gulp.watch('./src/pdf/*.*', pdf).on('change', gulp.series(browserReload));
     gulp.series(browserReload);
     done();
 }
 
 // タスクの実行！
-exports.default = gulp.series(clean, gulp.parallel(htmlMin, pugMin, sassMin, imageMin, movie, pdf, jsBundle), sync, watchFile);
+gulp.watch('./src/movie/*.*', movie).on('change', gulp.series(browserReload));
+exports.default = gulp.series(clean, gulp.parallel(htmlMin, pugMin, sassMin, imageMin, movie, favicon, pdf, jsBundle), sync, watchFile);

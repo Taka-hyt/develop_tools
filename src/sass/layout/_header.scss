@@ -1,0 +1,25 @@
+.l-header {
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    background-color: rgba($color-default, 0.5);
+
+    &_wrapper {
+        background-color: rgba($color-default, 0.1);
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+    &_logo {
+        width: auto;
+        height: 100%;
+
+        img {
+            width: auto;
+            height: 100%;
+        }
+    }
+}

@@ -1,12 +1,12 @@
 /* ==========================================================================
     Base
-    ========================================================================== */   
+    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP:300,400,500,600,700&display=swap');
 
-$color-default: #333;
+$color-default: #222;
 $color-light: #fff;
-$color-primary: #333;
+$color-primary: #222;
 $color-secondary: #f7f7f7;
 
 /* フォントサイズ
@@ -19,23 +19,23 @@ $color-secondary: #f7f7f7;
 @mixin font-size($font-size) {
     font-size: $font-size + px;
     // font-size: $font-size + rem;
-  
+
     @media screen and (max-width: 576px) {
-      font-size: (3.5vw * $font-size)/ 14;
+        font-size: (3.5vw * $font-size)/ 14;
     }
-  
+
     @media screen and (max-width: 1000px) {
-      font-size: (1.75vw * $font-size)/ 14;
+        font-size: (1.75vw * $font-size)/ 14;
     }
-  
+
     @media screen and (min-width: 1001px) {
-      font-size: $font-size + px;
+        font-size: $font-size + px;
     }
-  
+
     @media print {
-      font-size: $font-size + px;
+        font-size: $font-size + px;
     }
-}  
+}
 
 /* ==================================
 // メディアクエリ
@@ -57,7 +57,7 @@ $color-secondary: #f7f7f7;
     }
 }
 
-// PCの時のみ表示する   
+// PCの時のみ表示する
 .u-pc {
     display: block;
     @include tab-layout() {
@@ -91,13 +91,14 @@ html {
 }
 
 body {
-    font-family: "Noto Serif JP", sans-serif;
+    font-family: 'Noto Serif JP', sans-serif;
     color: $color-default;
     overflow-x: hidden;
 }
 
 /* IE表示用のCSS　*/
-_:-ms-input-placeholder body, :root body {
+_:-ms-input-placeholder body,
+:root body {
     // font-family: Meiryo, sans-serif;
 }
 
@@ -106,24 +107,23 @@ img {
 }
 
 h1 {
-    @include font-size(48)
+    @include font-size(48);
 }
 
 h2 {
-    @include font-size(32)
+    @include font-size(32);
 }
 
 h3 {
-    @include font-size(24)
+    @include font-size(24);
 }
 
 p {
-    @include font-size(16)
-
+    @include font-size(16);
 }
 
 a {
     color: $color-default;
     text-decoration: none;
-    @include font-size(16)
+    @include font-size(16);
 }

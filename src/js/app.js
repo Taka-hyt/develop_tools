@@ -1,6 +1,8 @@
-import $ from 'jquery';
+// import $ from 'jquery';
 import '@babel/polyfill';
+import 'intersection-observer';
+import { initTriggerHamburger } from './modules/hamburger';
 
-$(function() {
-    console.log('コンソールログだよん');
+document.addEventListener('DOMContentLoaded', () => {
+    initTriggerHamburger();
 });
