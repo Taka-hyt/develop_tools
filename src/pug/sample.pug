@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+include ./_includes/_mixin
+
 html(lang="ja")
     head
         meta(charset="UTF-8")
@@ -32,16 +35,18 @@ html(lang="ja")
         meta(name="twitter:image" content="")
         //- Google Fonts
         //- CSS
-        link(rel="stylesheet" type="text/css" href="/css/app.min.css")
+        link(rel="stylesheet" type="text/css" href="/asset/css/app.min.css")
     body
 
-        header
-            div Header
+        include ./_includes/_header
 
         main
-            div Main
+
+            div.p-banner
+
+            div.main
 
         footer
             div Footer
 
-        script(src="/js/bundle.js")
+        script(src="/asset/js/bundle.js")

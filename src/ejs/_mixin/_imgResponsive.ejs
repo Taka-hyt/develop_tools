@@ -1,0 +1,6 @@
+<picture>
+    <source media="(min-width: 1001px)" srcset="<%= src + exp + ' 1x,' + src + '@2x' + exp + ' 2x' %>" />
+    <source media="(max-width: 1000px)" srcset="<%= src + '-tab' + exp %>" />
+    <source media="(max-width: 576px)" srcset="<%= src + '-sp' + exp  %>" />
+    <img src="<%= src + exp %>" alt="<%= alt %>" id="<%= _id %>" class="<%= _class %>" />
+</picture>

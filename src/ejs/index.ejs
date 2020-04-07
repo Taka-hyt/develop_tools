@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+
+        <%- include('./_includes/_common.ejs') %> 
+
+        <title>はじめてのEJSコンパイル</title>
+
+        <!-- OGP -->
+        <%#- include('./_includes/_ogpCommon.ejs') %>
+        <%#- include('./_includes/_ogpTwitter.ejs') %>
+        <%#- include('./_includes/_ogpFacebook.ejs') %>
+
+    </head>
+</html>
+
+    <body>
+        <%- include('./_includes/_header') %>
+
+        <div class="p-banner"></div>
+
+        <main>
+
+            <article class="p-article l-content-wrap-default">
+                <div class="p-article_inner">
+                    <h2 class="p-article_ttl">Concept</h2>
+                    <div class="p-article_container">
+                        <div class="p-article_txtBox">
+                            <h3 class="p-article_subTtl">Lorem, ipsum.</h3>
+                            <p class="p-article_txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat assumenda repudiandae quod accusantium porro voluptates modi quo ipsam ad id. Nihil fugiat perferendis repellat reprehenderit, est possimus sint quas fugit excepturi placeat, molestiae eaque. Eveniet hic iste molestiae iusto debitis?</p>
+                        </div>
+                        <%- include('./_mixin/_imgResponsive', {src:'/asset/image/sample01', exp:'.jpg', alt:'サンプルのalt', _id:'サンプルのid', _class:'サンプルのclass'}); %> 
+                    </div>
+
+                    <div class="p-article_container p-article_container_rev">
+                        <div class="p-article_txtBox">
+                            <h3 class="p-article_subTtl">Lorem, ipsum.</h3>
+                            <p class="p-article_txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat assumenda repudiandae quod accusantium porro voluptates modi quo ipsam ad id. Nihil fugiat perferendis repellat reprehenderit, est possimus sint quas fugit excepturi placeat, molestiae eaque. Eveniet hic iste molestiae iusto debitis?</p>
+                        </div>
+                        <%- include('./_mixin/_imgResponsive', {src:'/asset/image/sample01', exp:'.jpg', alt:'サンプルのalt', _id:'サンプルのid', _class:'サンプルのclass'}); %> 
+                    </div>
+                </div>
+
+            </article>
+
+        </main>
+
+        <%- include('./_includes/_footer.ejs') %>
+
+        <script src="/asset/js/bundle.js"></script>
+
+    </body>
+</html>

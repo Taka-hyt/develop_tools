@@ -1,0 +1,15 @@
+#footer {
+    color: $color-light;
+    background-color: #111;
+    & .l-footer {
+        height: 20vh;
+    }
+
+    & .p-footer {
+        &_inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

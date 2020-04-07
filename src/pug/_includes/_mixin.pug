@@ -1,0 +1,12 @@
+mixin img(name, exp, alt)
+    img(src="/asset/image/" + name + exp, alt=alt, decoding="async")
+
+mixin img2x(name, exp, alt)
+    img(src="/asset/image/" + name + exp, alt=alt, srcset="/asset/image/" + name + exp + "/asset/image/" + name + "@2x" + exp, decoding="async")
+
+mixin wpResponsivePicture(name, exp, alt)
+    picture
+        source(media="(max-width: 480px)" srcset="/asset/image/" + name + "-sp" + exp )
+        source(media="(max-width: 1000px) and (min-width: 480px)" srcset="/asset/image/" + name + "-tab" + exp )
+        source(media="(min-width: 1001px)" srcset="/asset/image/" + name + exp + " 1x, /asset/image/" + name + "@2x" + exp + " 2x")
+        img(src="/asset/image/" + name + exp, alt=alt, decoding="async")

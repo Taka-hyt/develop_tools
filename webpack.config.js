@@ -7,7 +7,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
     // mode: 'development',
     mode: env,
-    entry: './src/js/app.js',
+    entry: './src/asset/js/app.js',
     output: {
         filename: 'bundle.js',
         // 出力先のパス（絶対パスを指定する）

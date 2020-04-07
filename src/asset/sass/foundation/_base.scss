@@ -87,13 +87,14 @@ $color-secondary: #f7f7f7;
 }
 
 html {
-    overflow: auto;
+    // overflow: auto;
 }
 
 body {
-    font-family: 'Noto Serif JP', sans-serif;
+    font-family: 'Vollkorn', 'Noto Serif JP', sans-serif;
     color: $color-default;
-    overflow-x: hidden;
+    // overflow-x: hidden;
+    line-height: 1.5;
 }
 
 /* IE表示用のCSS　*/
