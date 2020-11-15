@@ -1,0 +1,1168 @@
+// PCの時のみ表示する
+.u-pc {
+    display: block;
+    @include tab-layout() {
+        display: none !important;
+    }
+}
+// tablet・spの時のみ表示する
+.u-tab {
+    display: none;
+    @include tab-layout() {
+        display: block;
+    }
+}
+
+// spの時のみ表示する
+.u-sp {
+    display: none;
+    @include sp-layout() {
+        display: block !important;
+    }
+}
+
+// レスポンシブにしても勝手にpaddingを付けてくれる
+.u-container {
+    box-sizing: content-box !important;
+    padding: 0 5%;
+}
+
+/* ==========================================================================
+    Display
+    ========================================================================== */
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+.d-md-block {
+    @include tab-layout() {
+        display: block;
+    }
+}
+
+.d-sm-block {
+    @include sp-layout() {
+        display: block;
+    }
+}
+
+.d-inline {
+    display: inline;
+}
+
+.d-md-inline {
+    @include tab-layout() {
+        display: inline;
+    }
+}
+
+.d-sm-inline {
+    @include sp-layout() {
+        display: inline;
+    }
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.d-md-inline-block {
+    @include tab-layout() {
+        display: inline-block;
+    }
+}
+
+.d-sm-inline-block {
+    @include sp-layout() {
+        display: inline-block;
+    }
+}
+
+.d-flex {
+    display: flex;
+}
+
+.d-md-flex {
+    @include tab-layout() {
+        display: flex;
+    }
+}
+
+.d-sm-flex {
+    @include sp-layout() {
+        display: flex;
+    }
+}
+
+/* ==========================================================================
+    Spacing Margin
+    ========================================================================== */
+
+.u-mx-auto {
+    margin: 0 auto;
+}
+
+// Marigin Top
+
+.u-mt-0 {
+    margin-top: 0;
+}
+
+.u-mt5 {
+    margin-top: 5px;
+    @include sp-layout() {
+        margin-top: 2.5px;
+    }
+}
+
+.u-mt10 {
+    margin-top: 10px;
+    @include sp-layout() {
+        margin-top: 5px;
+    }
+}
+
+.u-mt15 {
+    margin-top: 15px;
+    @include sp-layout() {
+        margin-top: 7.5px;
+    }
+}
+
+.u-mt20 {
+    margin-top: 20px;
+    @include sp-layout() {
+        margin-top: 10px;
+    }
+}
+
+.u-mt25 {
+    margin-top: 25px;
+    @include sp-layout() {
+        margin-top: 12.5px;
+    }
+}
+
+.u-mt30 {
+    margin-top: 30px;
+    @include sp-layout() {
+        margin-top: 15px;
+    }
+}
+
+.u-mt35 {
+    margin-top: 35px;
+    @include sp-layout() {
+        margin-top: 17.5px;
+    }
+}
+
+.u-mt40 {
+    margin-top: 40px;
+    @include sp-layout() {
+        margin-top: 20px;
+    }
+}
+
+.u-mt45 {
+    margin-top: 45px;
+    @include sp-layout() {
+        margin-top: 22.5px;
+    }
+}
+
+.u-mt50 {
+    margin-top: 50px;
+    @include sp-layout() {
+        margin-top: 25px;
+    }
+}
+
+.u-mt65 {
+    margin-top: 65px;
+    @include sp-layout() {
+        margin-top: 32.5px;
+    }
+}
+
+.u-mt70 {
+    margin-top: 70px;
+    @include sp-layout() {
+        margin-top: 35px;
+    }
+}
+
+.u-mt75 {
+    margin-top: 75px;
+    @include sp-layout() {
+        margin-top: 37.5px;
+    }
+}
+
+.u-mt80 {
+    margin-top: 80px;
+    @include sp-layout() {
+        margin-top: 40px;
+    }
+}
+
+.u-mt85 {
+    margin-top: 85px;
+    @include sp-layout() {
+        margin-top: 42.5px;
+    }
+}
+
+.u-mt90 {
+    margin-top: 90px;
+    @include sp-layout() {
+        margin-top: 45px;
+    }
+}
+
+.u-mt95 {
+    margin-top: 95px;
+    @include sp-layout() {
+        margin-top: 47.5px;
+    }
+}
+
+.u-mt100 {
+    margin-top: 100px;
+    @include sp-layout() {
+        margin-top: 50px;
+    }
+}
+
+// Marigin Bottom
+
+.u-mb-0 {
+    margin-bottom: 0;
+}
+
+.u-mb5 {
+    margin-bottom: 5px;
+    @include sp-layout() {
+        margin-bottom: 2.5px;
+    }
+}
+
+.u-mb10 {
+    margin-bottom: 10px;
+    @include sp-layout() {
+        margin-bottom: 5px;
+    }
+}
+
+.u-mb15 {
+    margin-bottom: 15px;
+    @include sp-layout() {
+        margin-bottom: 7.5px;
+    }
+}
+
+.u-mb20 {
+    margin-bottom: 20px;
+    @include sp-layout() {
+        margin-bottom: 10px;
+    }
+}
+
+.u-mb25 {
+    margin-bottom: 25px;
+    @include sp-layout() {
+        margin-bottom: 12.5px;
+    }
+}
+
+.u-mb30 {
+    margin-bottom: 30px;
+    @include sp-layout() {
+        margin-bottom: 15px;
+    }
+}
+
+.u-mb35 {
+    margin-bottom: 35px;
+    @include sp-layout() {
+        margin-bottom: 17.5px;
+    }
+}
+
+.u-mb40 {
+    margin-bottom: 40px;
+    @include sp-layout() {
+        margin-bottom: 20px;
+    }
+}
+
+.u-mb45 {
+    margin-bottom: 45px;
+    @include sp-layout() {
+        margin-bottom: 22.5px;
+    }
+}
+
+.u-mb50 {
+    margin-bottom: 50px;
+    @include sp-layout() {
+        margin-bottom: 25px;
+    }
+}
+
+.u-mb65 {
+    margin-bottom: 65px;
+    @include sp-layout() {
+        margin-bottom: 32.5px;
+    }
+}
+
+.u-mb70 {
+    margin-bottom: 70px;
+    @include sp-layout() {
+        margin-bottom: 35px;
+    }
+}
+
+.u-mb75 {
+    margin-bottom: 75px;
+    @include sp-layout() {
+        margin-bottom: 37.5px;
+    }
+}
+
+.u-mb80 {
+    margin-bottom: 80px;
+    @include sp-layout() {
+        margin-bottom: 40px;
+    }
+}
+
+.u-mb85 {
+    margin-bottom: 85px;
+    @include sp-layout() {
+        margin-bottom: 42.5px;
+    }
+}
+
+.u-mb90 {
+    margin-bottom: 90px;
+    @include sp-layout() {
+        margin-bottom: 45px;
+    }
+}
+
+.u-mb95 {
+    margin-bottom: 95px;
+    @include sp-layout() {
+        margin-bottom: 47.5px;
+    }
+}
+
+.u-mb100 {
+    margin-bottom: 100px;
+    @include sp-layout() {
+        margin-bottom: 50px;
+    }
+}
+
+// Marigin Left
+
+.u-ml-0 {
+    margin-left: 0;
+}
+
+.u-ml5 {
+    margin-left: 5px;
+    @include sp-layout() {
+        margin-left: 2.5px;
+    }
+}
+
+.u-ml10 {
+    margin-left: 10px;
+    @include sp-layout() {
+        margin-left: 5px;
+    }
+}
+
+.u-ml15 {
+    margin-left: 15px;
+    @include sp-layout() {
+        margin-left: 7.5px;
+    }
+}
+
+.u-ml20 {
+    margin-left: 20px;
+    @include sp-layout() {
+        margin-left: 10px;
+    }
+}
+
+.u-ml25 {
+    margin-left: 25px;
+    @include sp-layout() {
+        margin-left: 12.5px;
+    }
+}
+
+.u-ml30 {
+    margin-left: 30px;
+    @include sp-layout() {
+        margin-left: 15px;
+    }
+}
+
+.u-ml35 {
+    margin-left: 35px;
+    @include sp-layout() {
+        margin-left: 17.5px;
+    }
+}
+
+.u-ml40 {
+    margin-left: 40px;
+    @include sp-layout() {
+        margin-left: 20px;
+    }
+}
+
+.u-ml45 {
+    margin-left: 45px;
+    @include sp-layout() {
+        margin-left: 22.5px;
+    }
+}
+
+.u-ml50 {
+    margin-left: 50px;
+    @include sp-layout() {
+        margin-left: 25px;
+    }
+}
+
+.u-ml65 {
+    margin-left: 65px;
+    @include sp-layout() {
+        margin-left: 32.5px;
+    }
+}
+
+.u-ml70 {
+    margin-left: 70px;
+    @include sp-layout() {
+        margin-left: 35px;
+    }
+}
+
+.u-ml75 {
+    margin-left: 75px;
+    @include sp-layout() {
+        margin-left: 37.5px;
+    }
+}
+
+.u-ml80 {
+    margin-left: 80px;
+    @include sp-layout() {
+        margin-left: 40px;
+    }
+}
+
+.u-ml85 {
+    margin-left: 85px;
+    @include sp-layout() {
+        margin-left: 42.5px;
+    }
+}
+
+.u-ml90 {
+    margin-left: 90px;
+    @include sp-layout() {
+        margin-left: 45px;
+    }
+}
+
+.u-ml95 {
+    margin-left: 95px;
+    @include sp-layout() {
+        margin-left: 47.5px;
+    }
+}
+
+.u-ml100 {
+    margin-left: 100px;
+    @include sp-layout() {
+        margin-left: 50px;
+    }
+}
+
+// Marigin Right
+
+.u-mr-0 {
+    margin-right: 0;
+}
+
+.u-mr5 {
+    margin-right: 5px;
+    @include sp-layout() {
+        margin-right: 2.5px;
+    }
+}
+
+.u-mr10 {
+    margin-right: 10px;
+    @include sp-layout() {
+        margin-right: 5px;
+    }
+}
+
+.u-mr15 {
+    margin-right: 15px;
+    @include sp-layout() {
+        margin-right: 7.5px;
+    }
+}
+
+.u-mr20 {
+    margin-right: 20px;
+    @include sp-layout() {
+        margin-right: 10px;
+    }
+}
+
+.u-mr25 {
+    margin-right: 25px;
+    @include sp-layout() {
+        margin-right: 12.5px;
+    }
+}
+
+.u-mr30 {
+    margin-right: 30px;
+    @include sp-layout() {
+        margin-right: 15px;
+    }
+}
+
+.u-mr35 {
+    margin-right: 35px;
+    @include sp-layout() {
+        margin-right: 17.5px;
+    }
+}
+
+.u-mr40 {
+    margin-right: 40px;
+    @include sp-layout() {
+        margin-right: 20px;
+    }
+}
+
+.u-mr45 {
+    margin-right: 45px;
+    @include sp-layout() {
+        margin-right: 22.5px;
+    }
+}
+
+.u-mr50 {
+    margin-right: 50px;
+    @include sp-layout() {
+        margin-right: 25px;
+    }
+}
+
+.u-mr65 {
+    margin-right: 65px;
+    @include sp-layout() {
+        margin-right: 32.5px;
+    }
+}
+
+.u-mr70 {
+    margin-right: 70px;
+    @include sp-layout() {
+        margin-right: 35px;
+    }
+}
+
+.u-mr75 {
+    margin-right: 75px;
+    @include sp-layout() {
+        margin-right: 37.5px;
+    }
+}
+
+.u-mr80 {
+    margin-right: 80px;
+    @include sp-layout() {
+        margin-right: 40px;
+    }
+}
+
+.u-mr85 {
+    margin-right: 85px;
+    @include sp-layout() {
+        margin-right: 42.5px;
+    }
+}
+
+.u-mr90 {
+    margin-right: 90px;
+    @include sp-layout() {
+        margin-right: 45px;
+    }
+}
+
+.u-mr95 {
+    margin-right: 95px;
+    @include sp-layout() {
+        margin-right: 47.5px;
+    }
+}
+
+.u-mr100 {
+    margin-right: 100px;
+    @include sp-layout() {
+        margin-right: 50px;
+    }
+}
+
+/* ==========================================================================
+    Spacing Padding
+    ========================================================================== */
+
+// Padding Top
+
+.u-pt-0 {
+    padding-top: 0;
+}
+
+.u-pt5 {
+    padding-top: 5px;
+    @include sp-layout() {
+        padding-top: 2.5px;
+    }
+}
+
+.u-pt10 {
+    padding-top: 10px;
+    @include sp-layout() {
+        padding-top: 5px;
+    }
+}
+
+.u-pt15 {
+    padding-top: 15px;
+    @include sp-layout() {
+        padding-top: 7.5px;
+    }
+}
+
+.u-pt20 {
+    padding-top: 20px;
+    @include sp-layout() {
+        padding-top: 10px;
+    }
+}
+
+.u-pt25 {
+    padding-top: 25px;
+    @include sp-layout() {
+        padding-top: 12.5px;
+    }
+}
+
+.u-pt30 {
+    padding-top: 30px;
+    @include sp-layout() {
+        padding-top: 15px;
+    }
+}
+
+.u-pt35 {
+    padding-top: 35px;
+    @include sp-layout() {
+        padding-top: 17.5px;
+    }
+}
+
+.u-pt40 {
+    padding-top: 40px;
+    @include sp-layout() {
+        padding-top: 20px;
+    }
+}
+
+.u-pt45 {
+    padding-top: 45px;
+    @include sp-layout() {
+        padding-top: 22.5px;
+    }
+}
+
+.u-pt50 {
+    padding-top: 50px;
+    @include sp-layout() {
+        padding-top: 25px;
+    }
+}
+
+.u-pt65 {
+    padding-top: 65px;
+    @include sp-layout() {
+        padding-top: 32.5px;
+    }
+}
+
+.u-pt70 {
+    padding-top: 70px;
+    @include sp-layout() {
+        padding-top: 35px;
+    }
+}
+
+.u-pt75 {
+    padding-top: 75px;
+    @include sp-layout() {
+        padding-top: 37.5px;
+    }
+}
+
+.u-pt80 {
+    padding-top: 80px;
+    @include sp-layout() {
+        padding-top: 40px;
+    }
+}
+
+.u-pt85 {
+    padding-top: 85px;
+    @include sp-layout() {
+        padding-top: 42.5px;
+    }
+}
+
+.u-pt90 {
+    padding-top: 90px;
+    @include sp-layout() {
+        padding-top: 45px;
+    }
+}
+
+.u-pt95 {
+    padding-top: 95px;
+    @include sp-layout() {
+        padding-top: 47.5px;
+    }
+}
+
+.u-pt100 {
+    padding-top: 100px;
+    @include sp-layout() {
+        padding-top: 50px;
+    }
+}
+
+// Marigin Bottom
+
+.u-pb-0 {
+    padding-bottom: 0;
+}
+
+.u-pb5 {
+    padding-bottom: 5px;
+    @include sp-layout() {
+        padding-bottom: 2.5px;
+    }
+}
+
+.u-pb10 {
+    padding-bottom: 10px;
+    @include sp-layout() {
+        padding-bottom: 5px;
+    }
+}
+
+.u-pb15 {
+    padding-bottom: 15px;
+    @include sp-layout() {
+        padding-bottom: 7.5px;
+    }
+}
+
+.u-pb20 {
+    padding-bottom: 20px;
+    @include sp-layout() {
+        padding-bottom: 10px;
+    }
+}
+
+.u-pb25 {
+    padding-bottom: 25px;
+    @include sp-layout() {
+        padding-bottom: 12.5px;
+    }
+}
+
+.u-pb30 {
+    padding-bottom: 30px;
+    @include sp-layout() {
+        padding-bottom: 15px;
+    }
+}
+
+.u-pb35 {
+    padding-bottom: 35px;
+    @include sp-layout() {
+        padding-bottom: 17.5px;
+    }
+}
+
+.u-pb40 {
+    padding-bottom: 40px;
+    @include sp-layout() {
+        padding-bottom: 20px;
+    }
+}
+
+.u-pb45 {
+    padding-bottom: 45px;
+    @include sp-layout() {
+        padding-bottom: 22.5px;
+    }
+}
+
+.u-pb50 {
+    padding-bottom: 50px;
+    @include sp-layout() {
+        padding-bottom: 25px;
+    }
+}
+
+.u-pb65 {
+    padding-bottom: 65px;
+    @include sp-layout() {
+        padding-bottom: 32.5px;
+    }
+}
+
+.u-pb70 {
+    padding-bottom: 70px;
+    @include sp-layout() {
+        padding-bottom: 35px;
+    }
+}
+
+.u-pb75 {
+    padding-bottom: 75px;
+    @include sp-layout() {
+        padding-bottom: 37.5px;
+    }
+}
+
+.u-pb80 {
+    padding-bottom: 80px;
+    @include sp-layout() {
+        padding-bottom: 40px;
+    }
+}
+
+.u-pb85 {
+    padding-bottom: 85px;
+    @include sp-layout() {
+        padding-bottom: 42.5px;
+    }
+}
+
+.u-pb90 {
+    padding-bottom: 90px;
+    @include sp-layout() {
+        padding-bottom: 45px;
+    }
+}
+
+.u-pb95 {
+    padding-bottom: 95px;
+    @include sp-layout() {
+        padding-bottom: 47.5px;
+    }
+}
+
+.u-pb100 {
+    padding-bottom: 100px;
+    @include sp-layout() {
+        padding-bottom: 50px;
+    }
+}
+
+// Marigin Left
+
+.u-pl-0 {
+    padding-left: 0;
+}
+
+.u-pl5 {
+    padding-left: 5px;
+    @include sp-layout() {
+        padding-left: 2.5px;
+    }
+}
+
+.u-pl10 {
+    padding-left: 10px;
+    @include sp-layout() {
+        padding-left: 5px;
+    }
+}
+
+.u-pl15 {
+    padding-left: 15px;
+    @include sp-layout() {
+        padding-left: 7.5px;
+    }
+}
+
+.u-pl20 {
+    padding-left: 20px;
+    @include sp-layout() {
+        padding-left: 10px;
+    }
+}
+
+.u-pl25 {
+    padding-left: 25px;
+    @include sp-layout() {
+        padding-left: 12.5px;
+    }
+}
+
+.u-pl30 {
+    padding-left: 30px;
+    @include sp-layout() {
+        padding-left: 15px;
+    }
+}
+
+.u-pl35 {
+    padding-left: 35px;
+    @include sp-layout() {
+        padding-left: 17.5px;
+    }
+}
+
+.u-pl40 {
+    padding-left: 40px;
+    @include sp-layout() {
+        padding-left: 20px;
+    }
+}
+
+.u-pl45 {
+    padding-left: 45px;
+    @include sp-layout() {
+        padding-left: 22.5px;
+    }
+}
+
+.u-pl50 {
+    padding-left: 50px;
+    @include sp-layout() {
+        padding-left: 25px;
+    }
+}
+
+.u-pl65 {
+    padding-left: 65px;
+    @include sp-layout() {
+        padding-left: 32.5px;
+    }
+}
+
+.u-pl70 {
+    padding-left: 70px;
+    @include sp-layout() {
+        padding-left: 35px;
+    }
+}
+
+.u-pl75 {
+    padding-left: 75px;
+    @include sp-layout() {
+        padding-left: 37.5px;
+    }
+}
+
+.u-pl80 {
+    padding-left: 80px;
+    @include sp-layout() {
+        padding-left: 40px;
+    }
+}
+
+.u-pl85 {
+    padding-left: 85px;
+    @include sp-layout() {
+        padding-left: 42.5px;
+    }
+}
+
+.u-pl90 {
+    padding-left: 90px;
+    @include sp-layout() {
+        padding-left: 45px;
+    }
+}
+
+.u-pl95 {
+    padding-left: 95px;
+    @include sp-layout() {
+        padding-left: 47.5px;
+    }
+}
+
+.u-pl100 {
+    padding-left: 100px;
+    @include sp-layout() {
+        padding-left: 50px;
+    }
+}
+
+// Marigin Right
+
+.u-pr-0 {
+    padding-right: 0;
+}
+
+.u-pr5 {
+    padding-right: 5px;
+    @include sp-layout() {
+        padding-right: 2.5px;
+    }
+}
+
+.u-pr10 {
+    padding-right: 10px;
+    @include sp-layout() {
+        padding-right: 5px;
+    }
+}
+
+.u-pr15 {
+    padding-right: 15px;
+    @include sp-layout() {
+        padding-right: 7.5px;
+    }
+}
+
+.u-pr20 {
+    padding-right: 20px;
+    @include sp-layout() {
+        padding-right: 10px;
+    }
+}
+
+.u-pr25 {
+    padding-right: 25px;
+    @include sp-layout() {
+        padding-right: 12.5px;
+    }
+}
+
+.u-pr30 {
+    padding-right: 30px;
+    @include sp-layout() {
+        padding-right: 15px;
+    }
+}
+
+.u-pr35 {
+    padding-right: 35px;
+    @include sp-layout() {
+        padding-right: 17.5px;
+    }
+}
+
+.u-pr40 {
+    padding-right: 40px;
+    @include sp-layout() {
+        padding-right: 20px;
+    }
+}
+
+.u-pr45 {
+    padding-right: 45px;
+    @include sp-layout() {
+        padding-right: 22.5px;
+    }
+}
+
+.u-pr50 {
+    padding-right: 50px;
+    @include sp-layout() {
+        padding-right: 25px;
+    }
+}
+
+.u-pr65 {
+    padding-right: 65px;
+    @include sp-layout() {
+        padding-right: 32.5px;
+    }
+}
+
+.u-pr70 {
+    padding-right: 70px;
+    @include sp-layout() {
+        padding-right: 35px;
+    }
+}
+
+.u-pr75 {
+    padding-right: 75px;
+    @include sp-layout() {
+        padding-right: 37.5px;
+    }
+}
+
+.u-pr80 {
+    padding-right: 80px;
+    @include sp-layout() {
+        padding-right: 40px;
+    }
+}
+
+.u-pr85 {
+    padding-right: 85px;
+    @include sp-layout() {
+        padding-right: 42.5px;
+    }
+}
+
+.u-pr90 {
+    padding-right: 90px;
+    @include sp-layout() {
+        padding-right: 45px;
+    }
+}
+
+.u-pr95 {
+    padding-right: 95px;
+    @include sp-layout() {
+        padding-right: 47.5px;
+    }
+}
+
+.u-pr100 {
+    padding-right: 100px;
+    @include sp-layout() {
+        padding-right: 50px;
+    }
+}

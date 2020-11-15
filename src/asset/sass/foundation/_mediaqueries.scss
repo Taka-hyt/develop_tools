@@ -1,0 +1,19 @@
+/* ==================================
+// メディアクエリ
+===================================== */
+
+@mixin pc-layout($width: 1001px) {
+    @media screen and (min-width: $width) {
+        @content;
+    }
+}
+@mixin tab-layout($width: 1000px) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}
+@mixin sp-layout($width: 576px) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}

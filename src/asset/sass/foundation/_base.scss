@@ -2,105 +2,21 @@
     Base
     ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP:300,400,500,600,700&display=swap');
-
-$color-default: #222;
-$color-light: #fff;
-$color-primary: #222;
-$color-secondary: #f7f7f7;
-
-/* フォントサイズ
-  @include font-size(14)
-  こんな感じで記述する。
-  vwなのでスマホのとき、でかすぎる時があるので、
-  大きい文字(fs32とか)は、SPのみ、
-  font-size: 6vw; こんな感じで上書きすることを許す。
-================================================== */
-@mixin font-size($font-size) {
-    font-size: $font-size + px;
-    // font-size: $font-size + rem;
-
-    @media screen and (max-width: 576px) {
-        font-size: (3.5vw * $font-size)/ 14;
-    }
-
-    @media screen and (max-width: 1000px) {
-        font-size: (1.75vw * $font-size)/ 14;
-    }
-
-    @media screen and (min-width: 1001px) {
-        font-size: $font-size + px;
-    }
-
-    @media print {
-        font-size: $font-size + px;
-    }
-}
-
-/* ==================================
-// メディアクエリ
-===================================== */
-
-@mixin pc-layout($width: 1001px) {
-    @media screen and (min-width: $width) {
-        @content;
-    }
-}
-@mixin tab-layout($width: 1000px) {
-    @media screen and (max-width: $width) {
-        @content;
-    }
-}
-@mixin sp-layout($width: 576px) {
-    @media screen and (max-width: $width) {
-        @content;
-    }
-}
-
-// PCの時のみ表示する
-.u-pc {
-    display: block;
-    @include tab-layout() {
-        display: none !important;
-    }
-}
-// tablet・spの時のみ表示する
-.u-tab {
-    display: none;
-    @include tab-layout() {
-        display: block;
-    }
-}
-
-// spの時のみ表示する
-.u-sp {
-    display: none;
-    @include sp-layout() {
-        display: block !important;
-    }
-}
-
-// レスポンシブにしても勝手にpaddingを付けてくれる
-.u-container {
-    box-sizing: content-box !important;
-    padding: 0 5%;
-}
-
 html {
     // overflow: auto;
 }
 
 body {
-    font-family: Avenir, 'Noto Serif JP', sans-serif;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     color: $color-default;
     // overflow-x: hidden;
     line-height: 1.5;
 }
 
-/* IE表示用のCSS　*/
+/* IE表示用のCSS */
 _:-ms-input-placeholder body,
 :root body {
-    // font-family: Meiryo, sans-serif;
+    font-family: Meiryo, sans-serif;
 }
 
 img {

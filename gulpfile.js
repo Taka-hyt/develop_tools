@@ -22,7 +22,11 @@ const changed = require('gulp-changed');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config');
-// const path = require('path');
+const mode = require("gulp-mode")({
+    modes: ["production", "development"],
+    default: "development",
+    verbose: false,
+});
 
 var paths = {
     srcDir: './src',
@@ -113,7 +117,7 @@ function sassCompile() {
         )
         .pipe(sourcemaps.write())
         .pipe(gcmq())
-        .pipe(cleanCSS())
+        .pipe(mode.production(cleanCSS()))
         .pipe(
             rename({
                 extname: '.min.css',
@@ -125,7 +129,7 @@ function sassCompile() {
 // imageをMinifyしてdistに吐き出し
 function imageMin() {
     return gulp
-        .src(paths.srcDir + '/asset/image/*.{jpg,jpeg,png,gif,svg}')
+        .src(paths.srcDir + '/asset/image/**/*.{jpg,jpeg,png,gif,svg}')
         .pipe(changed(paths.dstDir + '/asset/image'))
         .pipe(
             imagemin([
@@ -147,17 +151,17 @@ function imageMin() {
 
 // videoをそのまま吐き出す
 function movie() {
-    return gulp.src(paths.srcDir + '/asset/movie/*.*').pipe(gulp.dest(paths.dstDir + '/asset/movie'));
+    return gulp.src(paths.srcDir + '/asset/movie/**/*.*').pipe(gulp.dest(paths.dstDir + '/asset/movie'));
 }
 
 // faviconをそのまま吐き出す
 function favicon() {
-    return gulp.src(paths.srcDir + '/asset/image/*.ico').pipe(gulp.dest(paths.dstDir + '/asset/image'));
+    return gulp.src(paths.srcDir + '/asset/image/**/*.ico').pipe(gulp.dest(paths.dstDir + '/asset/image'));
 }
 
 // PDFをそのまま吐き出す
 function pdf() {
-    return gulp.src(paths.srcDir + '/asset/pdf/*.*').pipe(gulp.dest(paths.dstDir + '/asset/pdf'));
+    return gulp.src(paths.srcDir + '/asset/pdf/**/*.*').pipe(gulp.dest(paths.dstDir + '/asset/pdf'));
 }
 
 // JSファイルを圧縮
@@ -185,10 +189,10 @@ function watchFile(done) {
     gulp.watch(paths.srcDir + '/ejs/**/*.ejs', ejsCompile).on('change', gulp.series(browserReload));
     gulp.watch(paths.srcDir + '/asset/sass/**/*.{scss,sass}', sassCompile).on('change', gulp.series(browserReload));
     gulp.watch(paths.srcDir + '/asset/js/**/*.js', jsBundle).on('change', gulp.series(browserReload));
-    gulp.watch(paths.srcDir + '/asset/image/*.{jpg,jpeg,png,gif,svg}', imageMin).on('change', gulp.series(browserReload));
-    gulp.watch(paths.srcDir + '/asset/movie/*.*', movie).on('change', gulp.series(browserReload));
-    gulp.watch(paths.srcDir + '/asset/favicon/*.*', favicon).on('change', gulp.series(browserReload));
-    gulp.watch(paths.srcDir + '/asset/pdf/*.*', pdf).on('change', gulp.series(browserReload));
+    gulp.watch(paths.srcDir + '/asset/image/**/*.{jpg,jpeg,png,gif,svg}', imageMin).on('change', gulp.series(browserReload));
+    gulp.watch(paths.srcDir + '/asset/movie/**/*.*', movie).on('change', gulp.series(browserReload));
+    gulp.watch(paths.srcDir + '/asset/favicon/**/*.*', favicon).on('change', gulp.series(browserReload));
+    gulp.watch(paths.srcDir + '/asset/pdf/**/*.*', pdf).on('change', gulp.series(browserReload));
     gulp.series(browserReload);
     done();
 }

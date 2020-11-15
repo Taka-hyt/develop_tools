@@ -3,6 +3,9 @@
 // ==========================================================================
 
 @import 'foundation/_reset';
+@import 'foundation/_variables';
+@import 'foundation/_fontsize';
+@import 'foundation/_mediaqueries';
 @import 'foundation/_base';
 
 // ==========================================================================
@@ -35,4 +38,4 @@
 // Utility
 // -----------------------------------------------------------------
 
-// @import "object/utility/_display";
+@import 'object/utility/_utility';
