@@ -1,0 +1,31 @@
+/* ==========================================================================
+    Font Size
+    ========================================================================== */
+
+/* フォントサイズ
+  @include font-size(14)
+  こんな感じで記述する。
+  vwなのでスマホのとき、でかすぎる時があるので、
+  大きい文字(fs32とか)は、SPのみ、
+  font-size: 6vw; こんな感じで上書きすることを許す。
+================================================== */
+@mixin font-size($font-size) {
+    font-size: $font-size + px;
+    // font-size: $font-size + rem;
+
+    @media screen and (max-width: 576px) {
+        font-size: (3.5vw * $font-size)/ 14;
+    }
+
+    @media screen and (max-width: 1000px) {
+        font-size: (1.75vw * $font-size)/ 14;
+    }
+
+    @media screen and (min-width: 1001px) {
+        font-size: $font-size + px;
+    }
+
+    @media print {
+        font-size: $font-size + px;
+    }
+}
