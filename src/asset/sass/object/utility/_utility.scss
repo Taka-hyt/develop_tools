@@ -183,6 +183,20 @@
     }
 }
 
+.u-mt55 {
+    margin-top: 55px;
+    @include sp-layout() {
+        margin-top: 27.5px;
+    }
+}
+
+.u-mt60 {
+    margin-top: 60px;
+    @include sp-layout() {
+        margin-top: 30px;
+    }
+}
+
 .u-mt65 {
     margin-top: 65px;
     @include sp-layout() {
@@ -312,6 +326,20 @@
     margin-bottom: 50px;
     @include sp-layout() {
         margin-bottom: 25px;
+    }
+}
+
+.u-mb55 {
+    margin-bottom: 55px;
+    @include sp-layout() {
+        margin-bottom: 27.5px;
+    }
+}
+
+.u-mb60 {
+    margin-bottom: 60px;
+    @include sp-layout() {
+        margin-bottom: 30px;
     }
 }
 
@@ -447,6 +475,20 @@
     }
 }
 
+.u-ml55 {
+    margin-left: 55px;
+    @include sp-layout() {
+        margin-left: 27.5px;
+    }
+}
+
+.u-ml60 {
+    margin-left: 60px;
+    @include sp-layout() {
+        margin-left: 30px;
+    }
+}
+
 .u-ml65 {
     margin-left: 65px;
     @include sp-layout() {
@@ -576,6 +618,20 @@
     margin-right: 50px;
     @include sp-layout() {
         margin-right: 25px;
+    }
+}
+
+.u-mr55 {
+    margin-right: 55px;
+    @include sp-layout() {
+        margin-right: 27.5px;
+    }
+}
+
+.u-mr60 {
+    margin-right: 60px;
+    @include sp-layout() {
+        margin-right: 30px;
     }
 }
 
@@ -712,6 +768,20 @@
     padding-top: 50px;
     @include sp-layout() {
         padding-top: 25px;
+    }
+}
+
+.u-pt55 {
+    padding-top: 55px;
+    @include sp-layout() {
+        padding-top: 27.5px;
+    }
+}
+
+.u-pt60 {
+    padding-top: 60px;
+    @include sp-layout() {
+        padding-top: 30px;
     }
 }
 
@@ -979,6 +1049,20 @@
     }
 }
 
+.u-pl55 {
+    padding-left: 55px;
+    @include sp-layout() {
+        padding-left: 27.5px;
+    }
+}
+
+.u-pl60 {
+    padding-left: 60px;
+    @include sp-layout() {
+        padding-left: 30px;
+    }
+}
+
 .u-pl65 {
     padding-left: 65px;
     @include sp-layout() {
@@ -1108,6 +1192,20 @@
     padding-right: 50px;
     @include sp-layout() {
         padding-right: 25px;
+    }
+}
+
+.u-pr55 {
+    padding-right: 55px;
+    @include sp-layout() {
+        padding-right: 27.5px;
+    }
+}
+
+.u-pr60 {
+    padding-right: 60px;
+    @include sp-layout() {
+        padding-right: 30px;
     }
 }
 
