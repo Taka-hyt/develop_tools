@@ -197,10 +197,16 @@ function watchFile(done) {
     done();
 }
 
-// タスクの実行
+// タスクの実行（npm run start）
 exports.default = gulp.series(
     clean,
     gulp.parallel(htmlMin, pugCompile, ejsCompile, sassCompile, imageMin, movie, favicon, pdf, jsBundle),
     sync,
     watchFile
+);
+
+// ビルドコマンド（npm run build）
+exports.default = gulp.series(
+    clean,
+    gulp.parallel(htmlMin, pugCompile, ejsCompile, sassCompile, imageMin, movie, favicon, pdf, jsBundle),
 );
