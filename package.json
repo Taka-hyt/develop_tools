@@ -47,7 +47,7 @@
     },
     "scripts": {
         "start": "npx gulp",
-        "build": "NODE_ENV=production npx gulp --production && webpack"
+        "build": "NODE_ENV=production npx gulp build --production && webpack"
     },
     "author": "",
     "license": "ISC",

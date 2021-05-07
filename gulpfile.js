@@ -206,7 +206,7 @@ exports.default = gulp.series(
 );
 
 // ビルドコマンド（npm run build）
-exports.default = gulp.series(
+exports.build = gulp.series(
     clean,
     gulp.parallel(htmlMin, pugCompile, ejsCompile, sassCompile, imageMin, movie, favicon, pdf, jsBundle),
 );
